@@ -1,0 +1,48 @@
+//* Customize the credits
+add_filter( 'genesis_footer_creds_text', 'sp_footer_creds_text' );
+function sp_footer_creds_text() {
+	echo '<div class="creds"><p>';
+	echo '&copy; ';
+	echo date('Y');
+	echo ' &middot; <a href="http://iraqegate.com" target="_blank">Powered by Iraq E Gate</a>';
+	
+	echo '</p></div>';
+}
+
+add_filter( 'genesis_breadcrumb_args', 'sp_breadcrumb_args' );
+function sp_breadcrumb_args( $args ) {
+	$args['home'] = 'Home';
+	$args['sep'] = ' / ';
+	$args['list_sep'] = ', '; // Genesis 1.5 and later
+	$args['prefix'] = '<div class="breadcrumb">';
+	$args['suffix'] = '</div>';
+	$args['heirarchial_attachments'] = true; // Genesis 1.5 and later
+	$args['heirarchial_categories'] = true; // Genesis 1.5 and later
+	$args['display'] = true;
+	$args['labels']['prefix'] = '';
+	$args['labels']['author'] = '';
+	$args['labels']['category'] = ''; // Genesis 1.6 and later
+	$args['labels']['tag'] = '';
+	$args['labels']['date'] = '';
+	$args['labels']['search'] = 'Search for ';
+	$args['labels']['tax'] = '';
+	$args['labels']['post_type'] = '';
+	$args['labels']['404'] = 'Not found: '; // Genesis 1.5 and later
+return $args;
+}
+
+//* Customize Entry Meta Filed Under and Tagged Under
+add_filter( 'genesis_post_meta', 'ig_entry_meta_footer' );
+function ig_entry_meta_footer( $post_meta ) {
+	$post_meta = '[post_categories before=""] [post_tags before=""]';
+	return $post_meta;
+}
+
+if(ICL_LANGUAGE_CODE==ar){
+
+add_filter( 'genesis_breadcrumb_args', 'sp_breadcrumb_args_ar' );
+function sp_breadcrumb_args_ar( $args ) {
+	$args['home'] = '????????';
+return $args;
+}
+}
